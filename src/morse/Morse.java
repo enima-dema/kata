@@ -50,7 +50,10 @@ public class Morse {
 		}
 		return bits;
 	}
-
+	
+	//Get number of symb occurence the two most present will be the reference, and i will compare with the median
+	//Of the others. 
+	
 	
 	public static int getHowLongShorterSymb(String bits, String noSymb) {
 		String[] getOnes = bits.split(noSymb);
@@ -63,21 +66,6 @@ public class Morse {
 			}
 		}
 		return bits.length();
-	}
-
-	public static boolean getIfSmallerSpace(String bits, int unit) {
-		String[] getZero = bits.split("1");
-		int x = unit / 3;
-		if (x > 0) {
-			String toTest = code(x, "0");
-			System.out.println("ToTest = " + toTest);
-			for (int i = 1; i < getZero.length; ++i) {
-				if (getZero[i].equals(toTest)) {
-					return true;
-				}
-			}
-		}
-		return false;
 	}
 
 	public static String code(int i, String symb) {
@@ -113,6 +101,11 @@ public class Morse {
 
 		System.out.println(string);
 		return string;
+	}
+	
+	public static boolean ifEqualsVar(String string[], String sym){
+		
+		return true; 
 	}
 
 	public static String decodeMorse(String morseCode) {
