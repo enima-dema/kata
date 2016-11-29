@@ -14,11 +14,11 @@ public class Kata2 {
 		 * If no number match that condition, we go to the new number.
 		 */
 
-		//Get if the number is only one digit
-		if (n < 10){
+		// Get if the number is only one digit
+		if (n < 10) {
 			return -1;
 		}
-		
+
 		// Create a String from the long
 		String nString = String.valueOf(n);
 
@@ -27,27 +27,29 @@ public class Kata2 {
 		for (int i = 0; i < nString.length(); ++i) {
 			nList.add(Character.getNumericValue(nString.charAt(i)));
 		}
-		
-		printListInteger(nList);
-		
-		//Travel through the list
-		for (int i = nList.size() - 2; i >=0 ; --i){
-			//Travel through i to the end of the list wich is the max inferior to the digit
+
+		// Travel through the list
+		for (int i = nList.size() - 2; i >= 0; --i) {
+			// Travel through i to the end of the list wich is the max inferior
+			// to the digit
 			int max = -1;
 			int index = 0;
-			for (int y = i; y < nList.size(); ++y){
-				if (nList.get(i) < nList.get(y) && nList.get(y) > max){
+			for (int y = i; y < nList.size(); ++y) {
+				if (nList.get(i) > nList.get(y) && nList.get(y) > max) {
 					max = nList.get(y);
 					index = y;
 				}
 			}
-			
-			if (max != nList.get(i)){
+
+			if (max != -1) {
 				nList.remove(index);
-				nList.add(0, max);
+				nList.add(i, max);
 				String string = "";
-				for (int y : nList){
+				for (int y : nList) {
 					string = string.concat(String.valueOf(y));
+				}
+				if (string.charAt(0) == '0') {
+					return -1;
 				}
 				return Integer.valueOf(string);
 			}
@@ -63,7 +65,7 @@ public class Kata2 {
 		}
 		System.out.println();
 	}
-	
+
 	public static void printList(ArrayList<String> lol) {
 		for (String string : lol) {
 			System.out.print(string);

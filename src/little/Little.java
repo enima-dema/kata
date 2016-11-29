@@ -3,75 +3,85 @@ package little;
 public class Little {
 
 	public static void main(String[] arts) {
-		System.out.println(findEvenIndex(new int[] { 1, 2, 3, 4, 3, 2, 1 })); // 3
-		System.out.println(findEvenIndex(new int[] { 1, 100, 50, -51, 1, 1 }));
+		
+		System.out.println(findMissingLetter(new char[] { 'a', 'b', 'c', 'd', 'f' })); // e
+		
+		System.out.println(findMissingLetter(new char[] { 'O', 'Q', 'R', 'S' })); // P
 	}
 
-	public static int[] nbMonths(int startPriceOld, int startPriceNew, int savingperMonth, double percentLossByMonth) {
-		int[] result = new int[2];
-		int month = 0;
+	static String[] alpha = new String[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o",
+			"p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
 
-		while () {
-
-			++month;
+	public static char findMissingLetter(char[] array) {
+		int index = 0;
+		for (int i = 0; i < alpha.length; ++i) {
+			if (alpha[i].equalsIgnoreCase(String.valueOf(array[0]))) {
+				for (int y = i; y < alpha.length; ++y){
+					if (!alpha[y].equalsIgnoreCase(String.valueOf(array[index]))){
+						if (String.valueOf(array[index]).equals(String.valueOf(array[index]).toUpperCase())){
+							return alpha[y].toUpperCase().charAt(0);
+						}
+						return alpha[y].charAt(0);
+					}
+					++index;
+				}
+			}
 		}
-		return null;
+		return ' ';
 	}
-	
-	
+
 	public int min(int[] list) {
 		int min = list[0];
-		for (int i : list ){
-			if (i < min){
+		for (int i : list) {
+			if (i < min) {
 				min = i;
 			}
 		}
-	    return min;
-	  }
-	  
-	  public int max(int[] list) {
-		  int max = list[0];
-			for (int i : list ){
-				if (max < i){
-					max = i;
-				}
-			}
-		    return max;
-	  }
-	
-	  public static String switchItUp(int number)
-	  {
-	    switch(number){
-	      case 1 :
-	        return "one";
-	      case 2 :
-	        return "two";
-	      case 3 :
-	        return "three";
-	      case 4 :
-	        return "four";
-	      case 5 :
-	        return "five";
-	      case 6 :
-	        return "six";
-	      case 7 :
-	        return "seven";
-	      case 8 :
-	        return "eight";
-	      case 9 :
-	        return "nine";
-	    }
-	    return "";
-	  }
+		return min;
+	}
 
-	public static double getPrice(int startPrice, double percentageLossByMonth){
-		double result = startPrice - (startPrice * (percentageLossByMonth/100));
-		
+	public int max(int[] list) {
+		int max = list[0];
+		for (int i : list) {
+			if (max < i) {
+				max = i;
+			}
+		}
+		return max;
+	}
+
+	public static String switchItUp(int number) {
+		switch (number) {
+		case 1:
+			return "one";
+		case 2:
+			return "two";
+		case 3:
+			return "three";
+		case 4:
+			return "four";
+		case 5:
+			return "five";
+		case 6:
+			return "six";
+		case 7:
+			return "seven";
+		case 8:
+			return "eight";
+		case 9:
+			return "nine";
+		}
+		return "";
+	}
+
+	public static double getPrice(int startPrice, double percentageLossByMonth) {
+		double result = startPrice - (startPrice * (percentageLossByMonth / 100));
+
 		return result;
 	}
-	
-	
+
 	static int[] lol;
+
 	public static int findEvenIndex(int[] arr) {
 		lol = arr;
 		for (int i = 0; i < arr.length; ++i) {
