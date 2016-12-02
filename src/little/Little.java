@@ -4,11 +4,17 @@ public class Little {
 
 	public static void main(String[] arts) {
 		
-		System.out.println(findMissingLetter(new char[] { 'a', 'b', 'c', 'd', 'f' })); // e
-		
-		System.out.println(findMissingLetter(new char[] { 'O', 'Q', 'R', 'S' })); // P
+		public void Test3() {
+			System.out.println();digPow(46288, 3);
+		}
 	}
 
+	
+	public static long digPow(int n, int p) {
+		// your code
+    return -1;
+	}
+	
 	static String[] alpha = new String[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o",
 			"p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
 
