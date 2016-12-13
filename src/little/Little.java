@@ -11,9 +11,25 @@ import java.util.ArrayList;
 public class Little {
 
 	public static void main(String[] arts) {
-		String st = "Elijah,Chloe,Elizabeth,Matthew,Natalie,Jayden";
-        Integer[]we = new Integer[] {1, 3, 5, 5, 3, 6};
-		System.out.println(nthRank(st, we, 2));
+		System.out.println(travelChessboard("(1 8)(4 8)")); // 1 (distance 3)
+		System.out.println(travelChessboard("(1 1)(3 3)")); // 6 (distance 4)
+		System.out.println(travelChessboard("(2 3)(4 8)")); // 21 (distance 7)
+		System.out.println(travelChessboard("(3 1)(7 8)")); //330 (distance 10)
+	}
+
+	public static int travelChessboard(String s) {
+		int a1 = Character.getNumericValue(s.charAt(1));
+		int a2 = Character.getNumericValue(s.charAt(3));
+		int b1 = Character.getNumericValue(s.charAt(6));
+		int b2 = Character.getNumericValue(s.charAt(8));
+		
+		int distance = (b1 - a1) + (b2 - a2);
+
+		if (distance < 4){
+			return 1;
+		}else {
+			return (distance - 3) * 5 + 1;
+		}
 	}
 
 	static List<String> alphaList = Arrays.asList("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
@@ -24,7 +40,7 @@ public class Little {
 			return "No participants";
 		}
 		String[] names = st.split(",");
-		 if (n > names.length) {
+		if (n > names.length) {
 			return "Not enough participants";
 		}
 		String[][] weigth = new String[names.length][2];
@@ -39,14 +55,13 @@ public class Little {
 				} else if (Integer.valueOf(one[1]) > Integer.valueOf(two[1])) {
 					return -1;
 				} else {
-					two[0].compareTo(one[0]);
+					return two[0].compareTo(one[0]);
 				}
-				return 0;
 			}
 		});
-		
-		for(String[] string1 : weigth){
-			for (String string2 : string1){
+
+		for (String[] string1 : weigth) {
+			for (String string2 : string1) {
 				System.out.println(string2);
 			}
 		}
@@ -57,7 +72,7 @@ public class Little {
 	public static String getWeigth(String st, int w) {
 		int u = 0;
 		for (int i = 0; i < st.length(); ++i) {
-			u += alphaList.indexOf(String.valueOf(st.charAt(i)).toUpperCase());
+			u += alphaList.indexOf(String.valueOf(st.charAt(i)).toUpperCase()) + 1;
 		}
 		u += st.length();
 		u *= w;
