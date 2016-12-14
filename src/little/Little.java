@@ -11,10 +11,63 @@ import java.util.ArrayList;
 public class Little {
 
 	public static void main(String[] arts) {
-		System.out.println(travelChessboard("(1 8)(4 8)")); // 1 (distance 3)
-		System.out.println(travelChessboard("(1 1)(3 3)")); // 6 (distance 4)
-		System.out.println(travelChessboard("(2 3)(4 8)")); // 21 (distance 7)
-		System.out.println(travelChessboard("(3 1)(7 8)")); //330 (distance 10)
+
+	}
+
+	public static List<long[]> removNb(long n) {
+		// your code
+		return null;
+	}
+
+	public static String listSquared(long m, long n) {
+		ArrayList<String> result = new ArrayList<String>();
+
+		for (int i = (int) m; i <= n; ++i) {
+			// Get all the divisors of this particular number !
+			ArrayList<Integer> divisors = new ArrayList<Integer>();
+			for (int y = 0; y <= i; ++y) {
+				if (isItADivisor(Double.valueOf(i), Double.valueOf(y))) {
+					divisors.add(y);
+				}
+			}
+
+			// squared of these bad motherfucker
+			int tot = 0;
+			for (int y = 0; y < divisors.size(); ++y) {
+				tot += divisors.get(y) * divisors.get(y);
+			}
+
+			// Save if it is a square !
+			if (isItASquare(tot)) {
+				result.add("[" + String.valueOf(i) + ", " + String.valueOf(tot) + "]");
+			}
+		}
+
+		String string = "[";
+		for (int i = 0; i < result.size(); ++i) {
+			string = string.concat(result.get(i));
+			if (i != result.size() - 1) {
+				string = string.concat(", ");
+			}
+		}
+		string = string.concat("]");
+		return string;
+	}
+
+	public static boolean isItADivisor(Double m, Double y) {
+		Double x = m / y;
+		if (x.intValue() == x) {
+			return true;
+		}
+		return false;
+	}
+
+	public static boolean isItASquare(long m) {
+		Double M = Math.sqrt(m);
+		if (M == M.intValue()) {
+			return true;
+		}
+		return false;
 	}
 
 	public static int travelChessboard(String s) {
@@ -22,12 +75,12 @@ public class Little {
 		int a2 = Character.getNumericValue(s.charAt(3));
 		int b1 = Character.getNumericValue(s.charAt(6));
 		int b2 = Character.getNumericValue(s.charAt(8));
-		
+
 		int distance = (b1 - a1) + (b2 - a2);
 
-		if (distance < 4){
+		if (distance < 4) {
 			return 1;
-		}else {
+		} else {
 			return (distance - 3) * 5 + 1;
 		}
 	}
