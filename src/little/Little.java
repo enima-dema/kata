@@ -11,11 +11,88 @@ import java.util.ArrayList;
 public class Little {
 
 	public static void main(String[] arts) {
+		String art[] = new String[] { "ABAR 200", "CDXE 500", "BKWR 250", "BTSQ 890", "DRTY 600" };
+		String cd[] = new String[] { "X", "Z" };
+		System.out.println(stockSummary(art, cd));
+	}
 
+	public static String stockSummary(String[] lstOfArt, String[] lstOf1stLetter) {
+		String result = "";
+		boolean empty = false;
+		if (lstOf1stLetter.length >= 0 || lstOfArt.length >= 0) {
+			for (int i = 0; i < lstOf1stLetter.length; ++i) {
+				int qty = getQty(lstOf1stLetter[i], lstOfArt);
+				if (qty != 0) {
+					empty = true;
+				}
+				result = result.concat("(" + lstOf1stLetter[i] + " : " + qty + ")");
+				if (i != lstOf1stLetter.length - 1) {
+					result = result.concat(" - ");
+				}
+			}
+		}
+		if (empty) {
+			return result;
+		}else {
+			return "";
+		}
+	}
+
+	public static int getQty(String cat, String[] allBook) {
+		int x = 0;
+		for (int i = 0; i < allBook.length; ++i) {
+			String[] book = allBook[i].split(" ");
+			if (book[0].charAt(0) == cat.charAt(0)) {
+				x += Integer.valueOf(book[1]);
+			}
+		}
+		return x;
+	}
+
+	public static String balanceStatements(String lst) {
+		String[] commands = lst.split(", ");
+		int buy = 0;
+		int sell = 0;
+		ArrayList<Integer> errors = new ArrayList<Integer>();
+		for (int i = 0; i < commands.length; ++i) {
+			String[] command = commands[i].split(" ");
+			if (command.length == 4) {
+				try {
+					int qty = Integer.valueOf(command[1]);
+					double value = Double.valueOf(command[2]);
+					if (command[3].equals("B")) {
+						buy += (value * qty);
+					} else if (command[3].equals("S")) {
+						sell += (value * qty);
+					} else {
+						errors.add(i);
+					}
+				} catch (NumberFormatException e) {
+					errors.add(i);
+				}
+			} else {
+				errors.add(i);
+			}
+		}
+		String result = "Buy: " + buy + " Sell: " + sell + ";";
+		if (errors.size() > 0) {
+			result = result.concat(" Badly formed " + errors.size() + ": ");
+			for (Integer i : errors) {
+				result = result.concat(commands[i] + " ;");
+			}
+		}
+		return result;
+	}
+
+	public static void printList(String[] strings) {
+		for (String string : strings) {
+			System.out.print(string + "|");
+		}
+		System.out.println();
 	}
 
 	public static List<long[]> removNb(long n) {
-		// your code
+
 		return null;
 	}
 
