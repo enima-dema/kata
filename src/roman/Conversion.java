@@ -23,8 +23,6 @@ public class Conversion {
 	public static String traduct(char num, int pow) {
 		String result = "";
 		int x = Character.getNumericValue(num);
-		System.out.println(
-				"| pow = " + tableValue[0] + " | pow + 1 = " + tableValue[1] + " | pow + 2 = " + tableValue[2]);
 		if (x == 0) {
 		} else if (x == tableValue[2] - tableValue[0]) {
 			return tableSymb[pow][0] + tableSymb[pow][2];
